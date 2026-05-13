@@ -1,7 +1,346 @@
-{% for product in site.products %}
-  <a href="{{ product.url | relative_url }}">
-    <img src="{{ product.image }}" alt="{{ product.title }}">
-    <h3>{{ product.title }}</h3>
-    <p>€ {{ product.price }}</p>
-  </a>
-{% endfor %}
+---
+layout: default
+title: Shop
+permalink: /store/
+---
+
+<style>
+  /* ─── Breadcrumb ─────────────────────────────── */
+  .st-breadcrumb {
+    font-size: 12px;
+    color: #888;
+    padding: 12px 20px;
+    border-bottom: 1px solid #e8e6dc;
+    background: #faf9f6;
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+  .st-breadcrumb a { color: inherit; text-decoration: none; }
+  .st-breadcrumb a:hover { text-decoration: underline; }
+  .st-breadcrumb .sep { margin: 0 6px; color: #bbb; }
+
+  /* ─── Outer ──────────────────────────────────── */
+  .st-outer {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  /* ─── Left: Filter sidebar ───────────────────── */
+  .st-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .st-filter-box {
+    border: 1px solid #e0ddd0;
+    background: #fff;
+    overflow: hidden;
+  }
+  .st-filter-head {
+    background: #292D33;
+    color: #fff;
+    padding: 9px 14px;
+    font-size: 11px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .st-filter-body {
+    padding: 12px 14px;
+    font-size: 13px;
+    color: #555;
+    font-style: italic;
+    line-height: 2;
+  }
+  .st-filter-body a {
+    display: block;
+    color: #292D33;
+    text-decoration: none;
+    border-bottom: 1px solid #f0ede0;
+    padding: 3px 0;
+  }
+  .st-filter-body a:last-child { border: none; }
+  .st-filter-body a:hover { text-decoration: underline; }
+
+  /* ─── Right: Product list ────────────────────── */
+  .st-main { display: flex; flex-direction: column; gap: 0; }
+
+  /* Toolbar */
+  .st-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 14px;
+    background: #f9f8f4;
+    border: 1px solid #e0ddd0;
+    border-bottom: none;
+    font-size: 12px;
+    color: #777;
+    font-style: italic;
+  }
+  .st-toolbar strong { color: #292D33; font-style: normal; }
+
+  /* Product row – Geizhals list style */
+  .st-product-list {
+    border: 1px solid #e0ddd0;
+    background: #fff;
+  }
+  .st-product-row {
+    display: grid;
+    grid-template-columns: 110px 1fr auto;
+    gap: 0;
+    border-bottom: 1px solid #f0ede0;
+    transition: background .12s;
+  }
+  .st-product-row:last-child { border-bottom: none; }
+  .st-product-row:hover { background: #faf9f6; }
+
+  /* Image cell */
+  .st-prod-img {
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid #f0ede0;
+    background: #f9f8f4;
+  }
+  .st-prod-img img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    transition: transform .2s;
+  }
+  .st-product-row:hover .st-prod-img img { transform: scale(1.06); }
+
+  /* Info cell */
+  .st-prod-info {
+    padding: 14px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+  }
+  .st-prod-title {
+    font-size: 15px;
+    font-weight: normal;
+    font-style: italic;
+    color: #1a1a1a;
+    text-decoration: none;
+    line-height: 1.3;
+  }
+  .st-prod-title:hover { text-decoration: underline; color: #292D33; }
+
+  .st-prod-meta {
+    font-size: 11px;
+    color: #aaa;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .st-prod-tag {
+    background: #f0ede0;
+    color: #666;
+    padding: 1px 6px;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: bold;
+    letter-spacing: .3px;
+  }
+  .st-prod-desc {
+    font-size: 12px;
+    color: #888;
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .st-prod-badges { display: flex; gap: 5px; flex-wrap: wrap; }
+  .st-badge {
+    font-size: 10px;
+    font-weight: bold;
+    padding: 2px 7px;
+    letter-spacing: .3px;
+  }
+  .st-badge--new   { background: #292D33; color: #fff; }
+  .st-badge--stock { background: #fff; color: #2a6e2a; border: 1px solid #2a6e2a; }
+
+  /* Price cell */
+  .st-prod-price {
+    padding: 14px 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 8px;
+    min-width: 140px;
+    border-left: 1px solid #f0ede0;
+  }
+  .st-price-amt {
+    font-size: 22px;
+    font-weight: bold;
+    font-style: italic;
+    color: #2a6e2a;
+    white-space: nowrap;
+  }
+  .st-price-vat { font-size: 10px; color: #bbb; text-align: right; }
+  .st-btn-buy {
+    display: inline-block;
+    padding: 7px 14px;
+    background: #292D33;
+    color: #fff !important;
+    font-size: 12px;
+    font-weight: bold;
+    text-decoration: none !important;
+    white-space: nowrap;
+    transition: background .12s;
+  }
+  .st-btn-buy:hover { background: #1a1d20; }
+
+  /* Empty state */
+  .st-empty {
+    padding: 40px;
+    text-align: center;
+    color: #aaa;
+    font-style: italic;
+    font-size: 14px;
+    border: 1px solid #e0ddd0;
+    background: #fff;
+  }
+
+  /* ─── Responsive ─────────────────────────────── */
+  @media (max-width: 800px) {
+    .st-outer { grid-template-columns: 1fr; }
+    .st-filter { flex-direction: row; flex-wrap: wrap; }
+    .st-filter-box { flex: 1; min-width: 160px; }
+  }
+  @media (max-width: 560px) {
+    .st-product-row { grid-template-columns: 80px 1fr; }
+    .st-prod-price { display: none; }
+    .st-prod-info { padding: 10px 12px; }
+    .st-prod-img { padding: 10px; }
+    .st-prod-img img { width: 60px; height: 60px; }
+  }
+</style>
+
+<!-- Breadcrumb -->
+<div class="st-breadcrumb">
+  <a href="{{ '/' | relative_url }}">Startseite</a>
+  <span class="sep">›</span>
+  <span>Shop</span>
+</div>
+
+<div class="st-outer">
+
+  <!-- ── Filter Sidebar ── -->
+  <aside class="st-filter">
+
+    <div class="st-filter-box">
+      <div class="st-filter-head">Kategorien</div>
+      <div class="st-filter-body">
+        {% assign categories = site.products | map: "category" | uniq | compact %}
+        {% if categories.size > 0 %}
+          <a href="{{ '/store/' | relative_url }}">Alle Produkte</a>
+          {% for cat in categories %}
+            <a href="{{ '/store/?kategorie=' | append: cat | relative_url }}">{{ cat }}</a>
+          {% endfor %}
+        {% else %}
+          <span>Alle Produkte</span>
+        {% endif %}
+      </div>
+    </div>
+
+    <div class="st-filter-box">
+      <div class="st-filter-head">Info</div>
+      <div class="st-filter-body">
+        <a href="{{ '/contact.html' | relative_url }}">Kontakt</a>
+        <a href="{{ '/contact.html' | relative_url }}">Impressum</a>
+        <a href="{{ '/privacy.html' | relative_url }}">Datenschutz</a>
+      </div>
+    </div>
+
+    <div class="st-filter-box">
+      <div class="st-filter-head">Händler</div>
+      <div class="st-filter-body">
+        <strong style="color:#292D33; font-style:normal;">Webshop Simsek</strong><br>
+        <span style="font-size:11px;">Mustermannstraße 1<br>1010 Wien, AT</span>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ── Product List ── -->
+  <div class="st-main">
+
+    <!-- Toolbar -->
+    <div class="st-toolbar">
+      <span>
+        <strong>{{ site.products | size }}</strong> Produkt{% if site.products.size != 1 %}e{% endif %} gefunden
+      </span>
+      <span>Sortiert nach: Neueste</span>
+    </div>
+
+    <!-- List -->
+    {% if site.products and site.products.size > 0 %}
+    <div class="st-product-list">
+      {% for product in site.products %}
+      <div class="st-product-row">
+
+        <!-- Bild -->
+        <div class="st-prod-img">
+          <a href="{{ product.url | relative_url }}">
+            <img
+              src="{{ product.image | relative_url }}"
+              alt="{{ product.title }}"
+              onerror="this.onerror=null; this.src='{{ '/assets/img/placeholder.png' | relative_url }}';"
+            />
+          </a>
+        </div>
+
+        <!-- Info -->
+        <div class="st-prod-info">
+          <a class="st-prod-title" href="{{ product.url | relative_url }}">{{ product.title }}</a>
+          <div class="st-prod-meta">
+            {% if product.category %}
+              <span class="st-prod-tag">{{ product.category }}</span>
+            {% endif %}
+            {% if product.tags %}
+              {% for tag in product.tags limit:3 %}
+                <span class="st-prod-tag">{{ tag }}</span>
+              {% endfor %}
+            {% endif %}
+          </div>
+          {% if product.sidetxt %}
+            <div class="st-prod-desc">{{ product.sidetxt | truncate: 100 }}</div>
+          {% endif %}
+          <div class="st-prod-badges">
+            <span class="st-badge st-badge--new">Neu</span>
+            <span class="st-badge st-badge--stock">✔ Auf Lager</span>
+          </div>
+        </div>
+
+        <!-- Preis -->
+        <div class="st-prod-price">
+          <div>
+            <div class="st-price-amt">€ {{ product.price }}</div>
+            <div class="st-price-vat">inkl. 20% MwSt.</div>
+          </div>
+          <a class="st-btn-buy" href="{{ product.url | relative_url }}">Zum Produkt →</a>
+        </div>
+
+      </div>
+      {% endfor %}
+    </div>
+
+    {% else %}
+    <div class="st-empty">
+      Noch keine Produkte vorhanden.<br>
+      Produkte als <code>.md</code> Dateien in <code>_products/</code> anlegen.
+    </div>
+    {% endif %}
+
+  </div><!-- /.st-main -->
+
+</div><!-- /.st-outer -->

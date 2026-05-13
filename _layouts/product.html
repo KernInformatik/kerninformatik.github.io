@@ -1,24 +1,33 @@
+---
+layout: product
+title: AMD RYZEN 9070XT
+price: 589€
+image: /assets/images/9070XT.webp
+sidetxt: Top Qualität aus China!
+
+---
+
 <!-- Hidden Schema.org Microdata -->
 <div hidden itemscope itemtype="http://schema.org/Product">
   <meta itemprop="brand" content="Webshop Simsek" />
-  <meta itemprop="name" content="Sapphire Pulse RX 5080 XT" />
-  <img itemprop="image" src="/assets/images/rx5080xt.webp" alt="Sapphire Pulse RX 5080 XT" />
-  <meta itemprop="description" content="Top Grafikkarte mit 16GB GDDR6, perfekt für 4K Gaming." />
-  <meta itemprop="SKU" content="sapphire-pulse-rx-5080-xt" />
-  
+  <meta itemprop="name" content="{{ page.title }}" />
+  <img itemprop="image" src="{{ page.image | relative_url }}" alt="{{ page.title }}" />
+  <meta itemprop="description" content="{{ page.sidetxt }}" />
+  <meta itemprop="SKU" content="{{ page.title | slugify }}" />
+  {% if page.asin %}<span itemprop="productID" content="asin:{{ page.asin }}" />{% endif %}
   <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
     <meta itemprop="priceCurrency" content="EUR" />
-    <meta itemprop="price" content="586" />
+    <meta itemprop="price" content="{{ page.price }}" />
     <div itemprop="seller" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Webshop Simsek" />
     </div>
     <meta itemprop="itemCondition" content="NewCondition" />
     <meta itemprop="availability" content="InStock" />
-    <meta itemprop="url" content="/products/rtx5080/" />
+    <meta itemprop="url" content="{{ page.url | relative_url }}" />
   </div>
 </div>
 <div hidden class="author vcard"><a class="fn">Webshop Simsek</a></div>
-<div hidden class="updated">2026-05-13 22:24:12 +0200</div>
+<div hidden class="updated">{{ site.time }}</div>
 
 <style>
   /* ─── Breadcrumb ─────────────────────────────── */
@@ -325,11 +334,11 @@
 
 <!-- Breadcrumb -->
 <div class="pd-breadcrumb">
-  <a href="/">Startseite</a>
+  <a href="{{ '/' | relative_url }}">Startseite</a>
   <span class="sep">›</span>
-  <a href="/store">Shop</a>
+  <a href="{{ '/store' | relative_url }}">Shop</a>
   <span class="sep">›</span>
-  <span>Sapphire Pulse RX 5080 XT</span>
+  <span>{{ page.title }}</span>
 </div>
 
 <div class="pd-outer">
@@ -344,8 +353,8 @@
         <!-- Bild -->
         <div class="pd-img-col">
           <img
-            src="/assets/images/rx5080xt.webp"
-            alt="Sapphire Pulse RX 5080 XT"
+            src="{{ page.image | relative_url }}"
+            alt="{{ page.title }}"
             onerror="this.src='assets/images/9070XT.webp'"
           />
           <div class="pd-status-row">
@@ -356,11 +365,11 @@
 
         <!-- Info & Specs -->
         <div class="pd-info-col">
-          <h1 class="pd-title">Sapphire Pulse RX 5080 XT</h1>
+          <h1 class="pd-title">{{ page.title }}</h1>
 
           <div class="pd-meta">
             <span class="pd-stars">★★★★☆</span>
-            <span class="pd-sku">Stock keeping unit sapphire-pulse-rx-5080-xt</span>
+            <span class="pd-sku">Stock keeping unit {{ page.title | slugify }}</span>
           </div>
 
           <table class="pd-specs">
@@ -368,13 +377,18 @@
               <th>Marke</th>
               <td>AMD</td>
             </tr>
-            
+            {% if page.category %}
             <tr>
               <th>Kategorie</th>
-              <td>Grafikkarte</td>
+              <td>{{ page.category }}</td>
             </tr>
-            
-            
+            {% endif %}
+            {% if page.asin %}
+            <tr>
+              <th>ASIN</th>
+              <td>{{ page.asin }}</td>
+            </tr>
+            {% endif %}
             <tr>
               <th>Zustand</th>
               <td>Neu</td>
@@ -383,12 +397,12 @@
               <th>Verfügbarkeit</th>
               <td class="pd-instock">✔ Sofort lieferbar</td>
             </tr>
-            
+            {% if page.tags %}
             <tr>
               <th>Tags</th>
-              <td>AMD, Grafikkarte, RDNA4</td>
+              <td>{{ page.tags | join: ", " }}</td>
             </tr>
-            
+            {% endif %}
           </table>
         </div>
 
@@ -414,7 +428,7 @@
       <div class="pd-price-body">
 
         <div class="pd-price-main">
-          <span class="pd-price-amt">586</span>
+          <span class="pd-price-amt">{{ page.price }}</span>
         </div>
         <div class="pd-price-vat">inkl. 20% MwSt., zzgl. Versand</div>
 
@@ -426,13 +440,17 @@
           <span class="pd-official">Offiziell</span>
         </div>
 
-        
-          <a href="mailto:support.ticket@simsek.at?subject=Bestellung: Sapphire+Pulse+RX+5080+XT" class="pd-btn-primary">
+        {% if page.paypal-id %}
+          {% include paypal/paypal-button.html %}
+        {% elsif page.gum-id %}
+          {% include gum/gum-button.html %}
+        {% else %}
+          <a href="mailto:support.ticket@simsek.at?subject=Bestellung: {{ page.title | url_encode }}" class="pd-btn-primary">
              Jetzt kaufen
           </a>
-        
+        {% endif %}
 
-        <a href="/contact.html" class="pd-btn-outline">
+        <a href="{{ '/contact.html' | relative_url }}" class="pd-btn-outline">
           ✉ Anfrage stellen
         </a>
 
@@ -449,8 +467,7 @@
     <div class="pd-widget">
       <div class="pd-widget-head">Über dieses Produkt</div>
       <div class="pd-widget-body">
-        <p>Top Grafikkarte mit 16GB GDDR6, perfekt für 4K Gaming.</p>
-
+        {{ page.sidetxt | markdownify }}
       </div>
     </div>
 
