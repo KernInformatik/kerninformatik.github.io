@@ -8,7 +8,4 @@ layout: page
 
 - Wir freuen uns auf Ihren Einkauf!
 
-![Cicuit gif](assets/video/circuit.gif)
-
-
 
