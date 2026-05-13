@@ -1,19 +1,14 @@
 ---
-layout: product
-title: AMD RYZEN 9070XT
-price: 589€
-image: /assets/images/9070XT.webp
-sidetxt: Top Qualität aus China!
-
+layout: default
 ---
 
 <!-- Hidden Schema.org Microdata -->
 <div hidden itemscope itemtype="http://schema.org/Product">
-  <meta itemprop="brand" content="Webshop Simsek" />
+  <meta itemprop="brand" content="{{ page.brand | default: 'Webshop Simsek' }}" />
   <meta itemprop="name" content="{{ page.title }}" />
   <img itemprop="image" src="{{ page.image | relative_url }}" alt="{{ page.title }}" />
   <meta itemprop="description" content="{{ page.sidetxt }}" />
-  <meta itemprop="SKU" content="{{ page.title | slugify }}" />
+  <meta itemprop="sku" content="{{ page.title | slugify }}" />
   {% if page.asin %}<span itemprop="productID" content="asin:{{ page.asin }}" />{% endif %}
   <div itemprop="offers" itemscope itemtype="http://schema.org/Offer">
     <meta itemprop="priceCurrency" content="EUR" />
@@ -30,300 +25,117 @@ sidetxt: Top Qualität aus China!
 <div hidden class="updated">{{ site.time }}</div>
 
 <style>
-  /* ─── Breadcrumb ─────────────────────────────── */
   .pd-breadcrumb {
-    font-size: 12px;
-    color: #888;
-    padding: 12px 20px;
-    border-bottom: 1px solid #e8e6dc;
-    background: #faf9f6;
-    margin: 0 auto;
-    max-width: 1040px;
+    font-size: 12px; color: #888; padding: 12px 20px;
+    border-bottom: 1px solid #e8e6dc; background: #faf9f6;
+    margin: 0 auto; max-width: 1040px;
   }
   .pd-breadcrumb a { color: inherit; text-decoration: none; }
   .pd-breadcrumb a:hover { text-decoration: underline; }
   .pd-breadcrumb .sep { margin: 0 6px; color: #bbb; }
 
-  /* ─── Outer wrapper ──────────────────────────── */
   .pd-outer {
-    margin: 0 auto;
-    max-width: 1040px;
+    margin: 0 auto; max-width: 1040px;
     padding: 24px 20px 60px;
-    display: grid;
-    grid-template-columns: 1fr 300px;
-    gap: 24px;
-    align-items: start;
+    display: grid; grid-template-columns: 1fr 300px;
+    gap: 24px; align-items: start;
   }
 
-  /* ─── Product card ───────────────────────────── */
-  .pd-card {
-    border: 1px solid #e0ddd0;
-    background: #fff;
-  }
+  .pd-card { border: 1px solid #e0ddd0; background: #fff; }
 
-  /* top section: image | info */
   .pd-top {
-    display: grid;
-    grid-template-columns: 240px 1fr;
+    display: grid; grid-template-columns: 240px 1fr;
     border-bottom: 2px solid #e0ddd0;
   }
 
-  /* Image column */
   .pd-img-col {
-    border-right: 1px solid #e0ddd0;
-    padding: 24px 20px;
-    background: #f9f8f4;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 14px;
+    border-right: 1px solid #e0ddd0; padding: 24px 20px;
+    background: #f9f8f4; display: flex; flex-direction: column;
+    align-items: center; gap: 14px;
   }
   .pd-img-col img {
-    width: 190px;
-    height: 190px;
-    object-fit: contain;
-    display: block;
-    transition: transform .25s ease;
-    cursor: zoom-in;
+    width: 190px; height: 190px; object-fit: contain;
+    display: block; transition: transform .25s ease; cursor: zoom-in;
   }
   .pd-img-col img:hover { transform: scale(1.06); }
 
   .pd-status-row { display: flex; gap: 6px; flex-wrap: wrap; justify-content: center; }
-  .pd-tag {
-    font-size: 11px;
-    font-weight: bold;
-    padding: 3px 9px;
-    border-radius: 2px;
-    letter-spacing: .3px;
-  }
+  .pd-tag { font-size: 11px; font-weight: bold; padding: 3px 9px; border-radius: 2px; letter-spacing: .3px; }
   .pd-tag--new   { background: #292D33; color: #fff; }
   .pd-tag--stock { background: #fff; color: #292D33; border: 1px solid #292D33; }
 
-  /* Info column */
-  .pd-info-col {
-    padding: 22px 26px;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-
-  .pd-title {
-    font-size: 22px;
-    font-weight: normal;
-    font-style: italic;
-    line-height: 1.3;
-    margin: 0;
-    color: #1a1a1a;
-  }
-
-  .pd-meta {
-    font-size: 12px;
-    color: #888;
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    flex-wrap: wrap;
-  }
+  .pd-info-col { padding: 22px 26px; display: flex; flex-direction: column; gap: 14px; }
+  .pd-title { font-size: 22px; font-weight: normal; font-style: italic; line-height: 1.3; margin: 0; color: #1a1a1a; }
+  .pd-meta { font-size: 12px; color: #888; display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
   .pd-stars { color: #c8a000; letter-spacing: 2px; }
-  .pd-sku {
-    font-family: monospace;
-    font-size: 11px;
-    background: #f0ede0;
-    padding: 2px 7px;
-    color: #555;
-  }
+  .pd-sku { font-family: monospace; font-size: 11px; background: #f0ede0; padding: 2px 7px; color: #555; }
 
-  /* Specs table */
-  .pd-specs {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 13px;
-    margin-top: 4px;
-  }
+  .pd-specs { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 4px; }
   .pd-specs tr { border-bottom: 1px solid #f0ede0; }
   .pd-specs tr:last-child { border: none; }
-  .pd-specs th {
-    text-align: left;
-    padding: 6px 0;
-    font-weight: normal;
-    color: #777;
-    width: 36%;
-    font-style: italic;
-  }
-  .pd-specs td {
-    padding: 6px 0;
-    color: #1a1a1a;
-    font-weight: bold;
-    font-size: 13px;
-  }
+  .pd-specs th { text-align: left; padding: 6px 0; font-weight: normal; color: #777; width: 36%; font-style: italic; }
+  .pd-specs td { padding: 6px 0; color: #1a1a1a; font-weight: bold; font-size: 13px; }
   .pd-instock { color: #2a6e2a; }
 
-  /* Description section */
-  .pd-desc {
-    padding: 20px 26px 28px;
-  }
+  .pd-desc { padding: 20px 26px 28px; }
   .pd-section-label {
-    font-size: 11px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #fff;
-    background: #292D33;
-    padding: 5px 12px;
-    display: inline-block;
-    margin-bottom: 14px;
+    font-size: 11px; font-weight: bold; text-transform: uppercase;
+    letter-spacing: 1px; color: #fff; background: #292D33;
+    padding: 5px 12px; display: inline-block; margin-bottom: 14px;
   }
-  .pd-desc .entry-content {
-    max-width: 100%;
-    padding: 0;
-    font-size: 14px;
-    color: #3a3a3a;
-    line-height: 1.7;
-  }
+  .pd-desc .entry-content { max-width: 100%; padding: 0; font-size: 14px; color: #3a3a3a; line-height: 1.7; }
   .pd-desc .entry-content p { margin: 0 0 16px; }
   .pd-desc .entry-content ul { padding-left: 20px; }
   .pd-desc .entry-content h2,
-  .pd-desc .entry-content h3 {
-    font-size: 16px;
-    margin: 16px 0 8px;
-    font-style: italic;
-    font-weight: normal;
-  }
+  .pd-desc .entry-content h3 { font-size: 16px; margin: 16px 0 8px; font-style: italic; font-weight: normal; }
 
-  /* ─── Right sidebar ──────────────────────────── */
   .pd-sidebar { display: flex; flex-direction: column; gap: 16px; }
 
-  /* Price box */
-  .pd-price-box {
-    border: 1px solid #e0ddd0;
-    background: #00000051;
-    overflow: hidden;
-  }
-  .pd-price-head {
-    background: #000000;
-    color: #fff;
-    padding: 20px 25px;
-    font-size: 11px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
+  .pd-price-box { border: 1px solid #e0ddd0; background: #00000051; overflow: hidden; }
+  .pd-price-head { background: #000; color: #fff; padding: 20px 25px; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
   .pd-price-body { padding: 20px; }
 
-  .pd-price-main {
-    display: flex;
-    align-items: baseline;
-    gap: 10px;
-    margin-bottom: 2px;
-  }
-  .pd-price-cur { font-size: 20px; font-weight: bold; color: #2a6e2a; }
-  .pd-price-amt {
-    font-size: 36px;
-    font-weight: bold;
-    color: #2a6e2a;
-    line-height: 1;
-    font-style: italic;
-  }
+  .pd-price-main { display: flex; align-items: baseline; gap: 10px; margin-bottom: 2px; }
+  .pd-price-amt { font-size: 36px; font-weight: bold; color: #2a6e2a; line-height: 1; font-style: italic; }
   .pd-price-vat { font-size: 11px; color: #ff0000; margin-bottom: 12px; }
 
   .pd-shop-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border: 1px solid #e0ddd0;
-    padding: 9px 11px;
-    margin-bottom: 12px;
-    background: #f9f8f4;
+    display: flex; align-items: center; justify-content: space-between;
+    border: 1px solid #e0ddd0; padding: 9px 11px; margin-bottom: 12px; background: #f9f8f4;
   }
   .pd-shop-name { font-size: 13px; font-weight: bold; color: #1a1a1a; }
   .pd-shop-sub  { font-size: 11px; color: #888; margin-top: 2px; }
-  .pd-official  {
-    font-size: 10px; font-weight: bold;
-    background: #292D33; color: #fff;
-    padding: 2px 7px;
-    letter-spacing: .5px;
-  }
+  .pd-official  { font-size: 10px; font-weight: bold; background: #292D33; color: #fff; padding: 2px 7px; letter-spacing: .5px; }
 
-  /* Buttons – reuse theme's button style + add block variant */
   .pd-btn-primary {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    background: #292D33;
-    color: #fff !important;
-    border: none;
-    font-size: 15px;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none !important;
-    cursor: pointer;
-    margin-bottom: 8px;
-    letter-spacing: .3px;
-    transition: background .15s;
-    font-family: inherit;
+    display: block; width: 100%; padding: 12px; background: #292D33;
+    color: #fff !important; border: none; font-size: 15px; font-weight: bold;
+    text-align: center; text-decoration: none !important; cursor: pointer;
+    margin-bottom: 8px; letter-spacing: .3px; transition: background .15s; font-family: inherit;
   }
-  .pd-btn-primary:hover { background: #1a1d20; text-decoration: none !important; }
+  .pd-btn-primary:hover { background: #1a1d20; }
 
   .pd-btn-outline {
-    display: block;
-    width: 100%;
-    padding: 9px;
-    background: #fff;
-    color: #292D33 !important;
-    border: 2px solid #292D33;
-    font-size: 13px;
-    font-weight: bold;
-    text-align: center;
-    text-decoration: none !important;
-    cursor: pointer;
-    font-family: inherit;
-    transition: background .15s;
+    display: block; width: 100%; padding: 9px; background: #fff;
+    color: #292D33 !important; border: 2px solid #292D33; font-size: 13px;
+    font-weight: bold; text-align: center; text-decoration: none !important;
+    cursor: pointer; font-family: inherit; transition: background .15s;
   }
-  .pd-btn-outline:hover { background: #f0ede0; text-decoration: none !important; }
+  .pd-btn-outline:hover { background: #f0ede0; }
 
-  .pd-delivery {
-    margin-top: 12px;
-    font-size: 12px;
-    color: #555;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    font-style: italic;
-  }
+  .pd-delivery { margin-top: 12px; font-size: 12px; color: #555; display: flex; flex-direction: column; gap: 5px; font-style: italic; }
   .pd-delivery span { display: flex; align-items: center; gap: 7px; }
   .pd-dot { width: 7px; height: 7px; border-radius: 50%; background: #292D33; flex-shrink: 0; }
 
-  /* Widgets – matching site's .widget style */
-  .pd-widget {
-    border: 1px solid #e0ddd0;
-    background: #fff;
-    overflow: hidden;
-  }
-  .pd-widget-head {
-    background: #292D33;
-    color: #fff;
-    padding: 9px 14px;
-    font-size: 11px;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  .pd-widget-body {
-    padding: 14px;
-    font-size: 13px;
-    color: #555;
-    line-height: 1.65;
-    font-style: italic;
-  }
+  .pd-widget { border: 1px solid #e0ddd0; background: #fff; overflow: hidden; }
+  .pd-widget-head { background: #292D33; color: #fff; padding: 9px 14px; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; }
+  .pd-widget-body { padding: 14px; font-size: 13px; color: #555; line-height: 1.65; font-style: italic; }
   .pd-widget-body p { margin: 0 0 10px; }
   .pd-widget-body p:last-child { margin: 0; }
   .pd-widget-body a { color: #292D33; text-decoration: none; }
   .pd-widget-body a:hover { text-decoration: underline; }
 
-  /* ─── Responsive ─────────────────────────────── */
-  @media (max-width: 900px) {
-    .pd-outer { grid-template-columns: 1fr; }
-  }
+  @media (max-width: 900px) { .pd-outer { grid-template-columns: 1fr; } }
   @media (max-width: 640px) {
     .pd-top { grid-template-columns: 1fr; }
     .pd-img-col { border-right: none; border-bottom: 1px solid #e0ddd0; }
@@ -336,18 +148,17 @@ sidetxt: Top Qualität aus China!
 <div class="pd-breadcrumb">
   <a href="{{ '/' | relative_url }}">Startseite</a>
   <span class="sep">›</span>
-  <a href="{{ '/store' | relative_url }}">Shop</a>
+  <a href="{{ '/store/' | relative_url }}">Shop</a>
   <span class="sep">›</span>
   <span>{{ page.title }}</span>
 </div>
 
 <div class="pd-outer">
 
-  <!-- ── Left: Produkt ── -->
+  <!-- ── Links: Produkt ── -->
   <div>
     <div class="pd-card">
 
-      <!-- Bild + Specs -->
       <div class="pd-top">
 
         <!-- Bild -->
@@ -355,11 +166,11 @@ sidetxt: Top Qualität aus China!
           <img
             src="{{ page.image | relative_url }}"
             alt="{{ page.title }}"
-            onerror="this.src='assets/images/9070XT.webp'"
+            onerror="this.onerror=null; this.src='{{ '/assets/images/placeholder.png' | relative_url }}';"
           />
           <div class="pd-status-row">
-            <span class="pd-tag pd-tag--new">Neu</span>
-            <span class="pd-tag pd-tag--stock">Auf Lager</span>
+            <span class="pd-tag pd-tag--new">{{ page.condition | default: "Neu" }}</span>
+            <span class="pd-tag pd-tag--stock">{{ page.stock | default: "Auf Lager" }}</span>
           </div>
         </div>
 
@@ -369,14 +180,16 @@ sidetxt: Top Qualität aus China!
 
           <div class="pd-meta">
             <span class="pd-stars">★★★★☆</span>
-            <span class="pd-sku">Stock keeping unit {{ page.title | slugify }}</span>
+            <span class="pd-sku">SKU: {{ page.title | slugify }}</span>
           </div>
 
           <table class="pd-specs">
+            {% if page.brand %}
             <tr>
               <th>Marke</th>
-              <td>AMD</td>
+              <td>{{ page.brand }}</td>
             </tr>
+            {% endif %}
             {% if page.category %}
             <tr>
               <th>Kategorie</th>
@@ -391,12 +204,20 @@ sidetxt: Top Qualität aus China!
             {% endif %}
             <tr>
               <th>Zustand</th>
-              <td>Neu</td>
+              <td>{{ page.condition | default: "Neu" }}</td>
             </tr>
             <tr>
               <th>Verfügbarkeit</th>
-              <td class="pd-instock">✔ Sofort lieferbar</td>
+              <td class="pd-instock">✔ {{ page.stock | default: "Sofort lieferbar" }}</td>
             </tr>
+            {% if page.specs %}
+              {% for spec in page.specs %}
+              <tr>
+                <th>{{ spec[0] }}</th>
+                <td>{{ spec[1] }}</td>
+              </tr>
+              {% endfor %}
+            {% endif %}
             {% if page.tags %}
             <tr>
               <th>Tags</th>
@@ -412,19 +233,18 @@ sidetxt: Top Qualität aus China!
       <div class="pd-desc">
         <div class="pd-section-label">Produktbeschreibung</div>
         <article class="entry-content">
-          Sapphire Pulse Radeon RX 9070 XT, 16GB GDDR6, 2x HDMI, 2x DP, lite retail 
+          {{ content }}
         </article>
       </div>
 
     </div><!-- /.pd-card -->
   </div>
 
-  <!-- ── Right: Preisbox + Widgets ── -->
+  <!-- ── Rechts: Preisbox + Widgets ── -->
   <div class="pd-sidebar">
 
-    <!-- Preisbox -->
     <div class="pd-price-box">
-      <div class="pd-price-head">🏷 Bestes Angebot</div>
+      <div class="pd-price-head"> Bestes Angebot</div>
       <div class="pd-price-body">
 
         <div class="pd-price-main">
@@ -446,7 +266,7 @@ sidetxt: Top Qualität aus China!
           {% include gum/gum-button.html %}
         {% else %}
           <a href="mailto:support.ticket@simsek.at?subject=Bestellung: {{ page.title | url_encode }}" class="pd-btn-primary">
-             Jetzt kaufen
+            Jetzt kaufen
           </a>
         {% endif %}
 
@@ -463,7 +283,6 @@ sidetxt: Top Qualität aus China!
       </div>
     </div>
 
-    <!-- Über das Produkt -->
     <div class="pd-widget">
       <div class="pd-widget-head">Über dieses Produkt</div>
       <div class="pd-widget-body">
@@ -471,7 +290,6 @@ sidetxt: Top Qualität aus China!
       </div>
     </div>
 
-    <!-- Kontakt -->
     <div class="pd-widget">
       <div class="pd-widget-head">Fragen zum Produkt?</div>
       <div class="pd-widget-body">
