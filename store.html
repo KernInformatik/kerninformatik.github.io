@@ -252,6 +252,7 @@ permalink: /store/
       </div>
     </div>
 
+    <!--
     <div class="st-filter-box">
       <div class="st-filter-head">Info</div>
       <div class="st-filter-body">
@@ -260,6 +261,18 @@ permalink: /store/
         <a href="{{ '/privacy.html' | relative_url }}">Datenschutz</a>
       </div>
     </div>
+    -->
+<div class="st-filter-box">
+  <div class="st-filter-head">Info</div>
+  <div class="st-filter-body">
+    <a href="/contact.html">Kontakt</a>
+    <a href="/license.html">Lizenz</a>
+    <a href="/accessibility.html">Barrierefreiheit</a>
+    <a href="/media.html">Mediennachweise</a>
+    <a href="/disclaimer.html">Impressum</a>
+    <a href="/privacy.html">Datenschutz</a>
+  </div>
+</div>
 
     <div class="st-filter-box">
       <div class="st-filter-head">Händler</div>
@@ -292,7 +305,7 @@ permalink: /store/
         <div class="st-prod-img">
           <a href="{{ product.url | relative_url }}">
             <img
-              src="{{ product.image | relative_url }}"
+              src="{{ product.image | default: '/assets/img/placeholder.png' | relative_url }}"
               alt="{{ product.title }}"
               onerror="this.onerror=null; this.src='{{ '/assets/img/placeholder.png' | relative_url }}';"
             />
