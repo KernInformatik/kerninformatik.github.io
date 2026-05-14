@@ -31,7 +31,8 @@ defaults:
       layout: "page"
 
 # ─── Features ────────────────────────────────────
-search: true
+search: false
+pagination: false
 
 # ─── Build ───────────────────────────────────────
 markdown:  kramdown
