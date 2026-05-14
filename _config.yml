@@ -1,9 +1,59 @@
+# ─── Site Info ───────────────────────────────────
+title:       "Webshop Simsek"
+description: "Ihr österreichischer Online-Shop für Elektronik und mehr."
+author:      "Cihat Simsek"
+
+# ─── GitHub Pages URL ────────────────────────────
+url:     "https://kerninformatik.github.io"
+baseurl: ""
+
+# ─── Kontakt / Schema ────────────────────────────
+email:   "support.ticket@simsek.at"
+phone:   "+43 1234567890"
+
+# ─── Collections ─────────────────────────────────
 collections:
   products:
     output: true
     permalink: /products/:name/
 
-collections:
-  products:
-    output: true
-    permalink: /products/:name/
+# ─── Default Layouts ─────────────────────────────
+defaults:
+  - scope:
+      path: ""
+      type: "products"
+    values:
+      layout: "product"
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+
+# ─── Features ────────────────────────────────────
+search: true
+
+# ─── Build ───────────────────────────────────────
+markdown:  kramdown
+highlighter: rouge
+permalink: pretty
+
+# ─── Sass ────────────────────────────────────────
+sass:
+  sass_dir: _sass
+  style: compressed
+
+# ─── HTML Compression ────────────────────────────
+compress_html:
+  clippings: all
+  comments:  all
+  endings:   all
+  blanklines: false
+
+# ─── Exclude from build ──────────────────────────
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - run.sh
+  - bin/
