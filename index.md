@@ -24,8 +24,8 @@ SIMSEK GPU Suite ist nach dem **Freemium-Modell** aufgebaut: Eine kostenlose Bas
 | Tier | Preis | Features |
 |---|---|---|
 | **Free** | €0 | Monitoring, 1 OC-Profil, Basis-Lüftersteuerung |
-| **RX / RTX Edition** | €29,99 | Alle Features, 5 Profile, Benchmark, 2 Jahre Updates |
-| **Pro Edition** | €49,99 | AMD + NVIDIA, Multi-GPU, Remote Monitoring, 5 Jahre Updates |
+| **RX / RTX Edition** | €2999 | Alle Features, 5 Profile, Benchmark, 2 Jahre Updates |
+| **Pro Edition** | €4999 | AMD + NVIDIA, Multi-GPU, Remote Monitoring, 5 Jahre Updates |
 
 ---
 Vielen Dank für Ihren Einkauf, Cihat Simsek (Firmenbesitzer, CEO und CTO)
