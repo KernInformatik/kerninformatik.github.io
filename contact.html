@@ -1,41 +1,102 @@
-<h1>Impressum</h1>
+---
+layout: page
+title: Kontakt
+permalink: /contact.html
+---
 
-<h2>Angaben gemäß § 5 ECG und § 14 UGB</h2>
+<style>
+  .contact-wrap { max-width: 860px; margin: 0 auto; padding: 30px 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  .contact-wrap h2 { font-size: 18px; font-weight: normal; font-style: italic; border-bottom: 2px solid #292D33; padding-bottom: 6px; margin: 0 0 20px; }
+  .contact-info p { font-size: 14px; line-height: 2; color: #444; margin: 0 0 8px; }
+  .contact-info a { color: #292D33; text-decoration: none; }
+  .contact-info a:hover { text-decoration: underline; }
+  .contact-info strong { color: #292D33; }
 
-<p>
-  <strong>Webshop Simsek</strong><br>
-  Cihat Simsek<br>
-  Mustermannstraße 1<br>
-  1010 Wien<br>
-  Österreich
-</p>
+  .contact-form label { display: block; font-size: 12px; font-weight: bold; color: #555; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 4px; margin-top: 14px; }
+  .contact-form label:first-of-type { margin-top: 0; }
+  .contact-form input,
+  .contact-form select,
+  .contact-form textarea {
+    width: 100%; padding: 9px 12px; border: 1px solid #e0ddd0;
+    background: #faf9f6; font-family: inherit; font-size: 13px;
+    color: #1a1a1a; outline: none;
+  }
+  .contact-form input:focus,
+  .contact-form textarea:focus { border-color: #292D33; background: #fff; }
+  .contact-form textarea { height: 120px; resize: vertical; }
+  .contact-form button {
+    margin-top: 16px; padding: 11px 24px; background: #292D33;
+    color: #fff; border: none; font-size: 14px; font-weight: bold;
+    cursor: pointer; font-family: inherit; transition: background .15s;
+  }
+  .contact-form button:hover { background: #1a1d20; }
+  .form-note { font-size: 11px; color: #aaa; margin-top: 10px; font-style: italic; }
+  .mock-notice { background: #f9f8f4; border: 1px solid #e0ddd0; padding: 10px 14px; font-size: 12px; color: #888; font-style: italic; margin-bottom: 16px; }
 
-<h2>Kontakt</h2>
+  @media (max-width: 640px) { .contact-wrap { grid-template-columns: 1fr; } }
+</style>
 
-<p>
-  <strong>E-Mail:</strong> <a href="mailto:support.ticket@simsek.at">support.ticket@simsek.at</a><br>
-  <strong>Telefon:</strong> <a href="tel:+431234567890">+43 1234567890</a>
-</p>
+<div class="contact-wrap">
 
-<h2>Offenlegung gemäß § 25 MedienG</h2>
+  <div class="contact-info">
+    <h2>Kontaktdaten</h2>
+    <p><strong>Webshop Simsek</strong></p>
+    <p>Mustermannstraße 1<br>1010 Wien, Österreich</p>
+    <p>
+       <a href="mailto:support.ticket@simsek.at">support.ticket@simsek.at</a><br>
+       <a href="tel:+431234567890">+43 1234567890</a>
+    </p>
+    <p><strong>Öffnungszeiten Support:</strong><br>
+    Mo–Fr: 09:00–17:00 Uhr</p>
 
-<p>
-  Medieninhaber und Herausgeber: Cihat Simsek, Mustermannstraße 1, 1010 Wien, Österreich.<br>
-  Zweck der Website: Online-Webshop zum Vertrieb digitaler und/oder physischer Produkte.
-</p>
+    <p style="margin-top:24px;"><strong>Für Bestellanfragen:</strong><br>
+    Bitte geben Sie Produktname, gewünschte Menge und Lieferadresse an.</p>
 
-<h2>Haftungsausschluss</h2>
+    <p><strong>Für Reklamationen:</strong><br>
+    Bitte Bestellnummer und Problembeschreibung angeben.<br>
+    Wir melden uns innerhalb von 2 Werktagen.</p>
+  </div>
 
-<p>
-  Trotz sorgfältiger inhaltlicher Kontrolle übernehmen wir keine Haftung für die Inhalte externer Links.
-  Für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.
-</p>
+  <div class="contact-form">
+    <h2>Nachricht senden</h2>
+    <div class="mock-notice">
+       Dieses Formular ist zu Demo-Zwecken. Nachrichten werden nicht versendet.
+    </div>
 
-<h2>Urheberrecht</h2>
+    <form onsubmit="handleSubmit(event)">
+      <label for="cf-name">Name *</label>
+      <input type="text" id="cf-name" name="name" placeholder="Max Mustermann" required />
 
-<p>
-  Die auf dieser Website veröffentlichten Inhalte und Werke unterliegen dem österreichischen Urheberrecht.
-  Jede Vervielfältigung, Bearbeitung, Verbreitung oder jede sonstige Verwertung außerhalb der Grenzen
-  des Urheberrechts bedarf der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers.
-</p>
+      <label for="cf-email">E-Mail *</label>
+      <input type="email" id="cf-email" name="email" placeholder="max@beispiel.at" required />
 
+      <label for="cf-subject">Betreff</label>
+      <select id="cf-subject" name="subject">
+        <option value="">Bitte wählen...</option>
+        <option value="order">Bestellanfrage</option>
+        <option value="support">Technischer Support</option>
+        <option value="complaint">Reklamation</option>
+        <option value="other">Sonstiges</option>
+      </select>
+
+      <label for="cf-message">Nachricht *</label>
+      <textarea id="cf-message" name="message" placeholder="Ihre Nachricht..." required></textarea>
+
+      <button type="submit">Nachricht senden →</button>
+      <p class="form-note">* Pflichtfelder. Ihre Daten werden gemäß unserer <a href="/privacy.html">Datenschutzerklärung</a> verarbeitet.</p>
+    </form>
+
+    <div id="form-success" style="display:none; margin-top:16px; padding:12px; background:#e8f7ef; border:1px solid #b3dfca; color:#0a7c3e; font-size:13px;">
+       Vielen Dank! Ihre Nachricht wurde (simuliert) gesendet.
+    </div>
+  </div>
+
+</div>
+
+<script>
+function handleSubmit(e) {
+  e.preventDefault();
+  document.getElementById('form-success').style.display = 'block';
+  e.target.reset();
+}
+</script>

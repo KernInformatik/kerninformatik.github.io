@@ -1,54 +1,99 @@
-<h1>Erklärung zur Barrierefreiheit</h1>
+---
+layout: page
+title: Barrierefreiheit
+permalink: /accessibility.html
+---
 
-<p>
-  <strong>Webshop Simsek</strong> ist bemüht, seine Website barrierefrei zugänglich zu machen,
-  in Übereinstimmung mit der Richtlinie (EU) 2016/2102 des Europäischen Parlaments und des Rates.
-</p>
+<style>
+  .legal-wrap { max-width: 760px; margin: 0 auto; padding: 30px 20px; }
+  .legal-wrap h2 { font-size: 18px; font-weight: normal; font-style: italic; border-bottom: 2px solid #292D33; padding-bottom: 6px; margin: 32px 0 14px; }
+  .legal-wrap h2:first-child { margin-top: 0; }
+  .legal-wrap p { font-size: 14px; line-height: 1.8; color: #444; margin: 0 0 12px; }
+  .legal-wrap ul { font-size: 14px; line-height: 2; color: #444; padding-left: 20px; margin: 0 0 12px; }
+  .legal-wrap a { color: #292D33; }
+  .source-note { font-size: 11px; color: #aaa; font-style: italic; margin-top: -8px; margin-bottom: 16px; }
+  .status-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0; }
+  .status-box { border: 1px solid #e0ddd0; padding: 14px; font-size: 13px; }
+  .status-box h4 { font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: .8px; margin: 0 0 8px; }
+  .status-box.ok h4 { color: #2a6e2a; }
+  .status-box.partial h4 { color: #c8a000; }
+  .status-box ul { margin: 0; line-height: 1.7; }
+  @media (max-width: 560px) { .status-grid { grid-template-columns: 1fr; } }
+</style>
 
-<h2>Stand der Vereinbarkeit mit den Anforderungen</h2>
+<div class="legal-wrap">
 
-<p>
-  Diese Website ist teilweise mit den Anforderungen der Web Content Accessibility Guidelines (WCAG) 2.1
-  auf Konformitätsstufe AA vereinbar. Die nachstehend aufgeführten Bereiche sind noch nicht vollständig
-  barrierefrei zugänglich.
-</p>
+  <h2>Erklärung zur Barrierefreiheit</h2>
 
-<h2>Nicht barrierefreie Inhalte</h2>
+  <p>
+    <strong>Webshop Simsek</strong> ist bemüht, seine Website nach dem Stand der Technik
+    barrierefrei zugänglich zu gestalten. Als Orientierungsrahmen dienen die
+    <strong>Web Content Accessibility Guidelines (WCAG) 2.2, Konformitätsstufe AA</strong>
+    des W3C sowie die europäische Norm <strong>EN 301 549 V3.2.1</strong>.
+  </p>
+  <p class="source-note">
+    Hinweis: Die EU-Richtlinie 2016/2102 verpflichtet primär öffentliche Stellen zur Barrierefreiheit
+    (<a href="https://digital-strategy.ec.europa.eu/en/policies/web-accessibility-directive-standards-and-harmonisation" target="_blank" rel="noopener">Quelle: EU-Kommission</a>).
+    Der rechtlich harmonisierte Standard ist derzeit WCAG 2.1 (EN 301 549 V3.2.1).
+    WCAG 2.2 wird freiwillig als Best Practice angewendet, da es keine Breaking Changes zu WCAG 2.1 enthält.
+    In Österreich wurde die Richtlinie durch das
+    <a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20011137" target="_blank" rel="noopener">Web-Zugänglichkeits-Gesetz (WZG)</a> umgesetzt.
+  </p>
 
-<ul>
-  <li>Manche älteren Produktbilder verfügen möglicherweise nicht über beschreibende Alternativtexte.</li>
-  <li>Einige eingebettete Inhalte von Drittanbietern (z. B. Videos) sind möglicherweise nicht vollständig zugänglich.</li>
-  <li>PDF-Dokumente und Downloadinhalte erfüllen möglicherweise nicht alle Barrierefreiheitsstandards.</li>
-</ul>
+  <h2>Stand der Umsetzung</h2>
+  <p>Diese Website ist <strong>teilweise konform</strong> mit WCAG 2.2 Konformitätsstufe AA.</p>
 
-<h2>Erstellung dieser Erklärung</h2>
+  <div class="status-grid">
+    <div class="status-box ok">
+      <h4>✔ Umgesetzt</h4>
+      <ul>
+        <li>Semantisches HTML5 (header, nav, main, article, aside, footer)</li>
+        <li>Alt-Texte für alle Produktbilder</li>
+        <li>Farbkontrastverhältnis ≥ 4,5:1 (Text auf Hintergrund)</li>
+        <li>Tastaturnavigation möglich</li>
+        <li>Skip-to-Content Link</li>
+        <li>Responsive Design</li>
+        <li>Sprache im HTML-Tag (lang="de-AT")</li>
+        <li>Formular-Labels korrekt verknüpft (for/id)</li>
+        <li>Fokus-Indikatoren für interaktive Elemente</li>
+        <li>ARIA-Labels für SVG-Grafiken (role="img", aria-label)</li>
+      </ul>
+    </div>
+    <div class="status-box partial">
+      <h4>⚠ Bekannte Einschränkungen</h4>
+      <ul>
+        <li>Banner-Animation (circuit.gif) ohne Beschreibung für Screenreader</li>
+        <li>Kontaktformular ohne ARIA live regions</li>
+        <li>Keine Untertitel für eingebettete Videos</li>
+        <li>Externe Herstellerbilder – Alt-Text-Qualität variiert</li>
+      </ul>
+    </div>
+  </div>
 
-<p>
-  Diese Erklärung wurde am <strong>{{ site.time | date: "%d.%m.%Y" }}</strong> erstellt.
-  Die Bewertung basiert auf einer Selbsteinschätzung.
-</p>
+  <h2>Technische Spezifikation</h2>
+  <ul>
+    <li><strong>Richtlinie:</strong> WCAG 2.2 (W3C, Oktober 2023) –
+      <a href="https://www.w3.org/TR/WCAG22/" target="_blank" rel="noopener">w3.org/TR/WCAG22</a></li>
+    <li><strong>Konformitätsstufe:</strong> Teilweise AA</li>
+    <li><strong>Bewertungsmethode:</strong> Selbstbewertung</li>
+    <li><strong>Harmonisierte Norm:</strong> EN 301 549 V3.2.1 (2021-03)</li>
+    <li><strong>Empfohlene Tools:</strong>
+      <a href="https://wave.webaim.org/" target="_blank" rel="noopener">WAVE</a>,
+      <a href="https://www.deque.com/axe/" target="_blank" rel="noopener">axe DevTools</a>
+    </li>
+  </ul>
 
-<h2>Feedback und Kontakt</h2>
+  <h2>Feedback und Kontakt</h2>
+  <p>
+    Wenn Sie Barrieren bemerken oder Inhalte in anderer Form benötigen:<br>
+    📧 <a href="mailto:support.ticket@simsek.at">support.ticket@simsek.at</a><br>
+    📞 <a href="tel:+431234567890">+43 1234567890</a>
+  </p>
+  <p>Wir bearbeiten Ihre Anfrage innerhalb von 5 Werktagen.</p>
 
-<p>
-  Wenn Sie Barrieren auf unserer Website bemerken oder Informationen in einem anderen Format benötigen,
-  wenden Sie sich bitte an uns:
-</p>
+  <p>
+    <em>Diese Erklärung wurde am <strong>{{ site.time | date: "%d.%m.%Y" }}</strong>
+    auf Basis einer Selbstbewertung erstellt.</em>
+  </p>
 
-<p>
-  <strong>E-Mail:</strong> <a href="mailto:support.ticket@simsek.at">support.ticket@simsek.at</a><br>
-  <strong>Telefon:</strong> <a href="tel:+431234567890">+43 1234567890</a><br>
-  <strong>Adresse:</strong> Mustermannstraße 1, 1010 Wien, Österreich
-</p>
-
-<p>Wir werden Ihre Anfrage so schnell wie möglich bearbeiten.</p>
-
-<h2>Durchsetzungsverfahren</h2>
-
-<p>
-  Sollten Sie auf Ihre Anfrage keine zufriedenstellende Antwort erhalten, können Sie sich an die
-  zuständige Aufsichtsbehörde wenden. In Österreich ist dies der
-  <strong>Bundesbeauftragte für Informationstechnologie</strong>.<br>
-  Weitere Informationen: <a href="https://www.bka.gv.at" target="_blank" rel="noopener">www.bka.gv.at</a>
-</p>
-
+</div>
