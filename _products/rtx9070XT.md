@@ -1,7 +1,7 @@
 ---
 layout: product
 title: Sapphire Pulse RX 9070 XT
-price: 589 €
+price: 589
 image: /assets/images/9070XT.webp
 sidetxt: Top Grafikkarte für 4K Gaming.
 brand: AMD
