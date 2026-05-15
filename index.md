@@ -5,7 +5,7 @@ title: Über uns
 
 ## Unternehmen
 
-**Webshop Simsek** ist ein österreichisches Software-Start-Up mit Sitz in Wien, spezialisiert auf die Entwicklung und den Vertrieb von GPU-Management-Software. Unsere Flaggschiff-Anwendung **SIMSEK GPU Suite** ermöglicht GamerInnen, Content CreatorInnen und professionellen AnwenderInnen die vollständige Kontrolle über ihre Grafikkarte – Monitoring, Overclocking, Lüftersteuerung und Energieoptimierung in einer intuitiven Oberfläche.
+**CSimsek** ist ein österreichisches Software-Start-Up mit Sitz in Wien, spezialisiert auf die Entwicklung und den Vertrieb von GPU-Management-Software. Unsere Flaggschiff-Anwendung **SIMSEK GPU Suite** ermöglicht GamerInnen, Content CreatorInnen und professionellen AnwenderInnen die vollständige Kontrolle über ihre Grafikkarte – Monitoring, Overclocking, Lüftersteuerung und Energieoptimierung in einer intuitiven Oberfläche.
 
 | | |
 |---|---|
