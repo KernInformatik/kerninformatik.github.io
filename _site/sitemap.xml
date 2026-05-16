@@ -2,15 +2,15 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://localhost:4000/products/free-tier/</loc>
-<lastmod>2026-05-16T10:59:38+02:00</lastmod>
+<lastmod>2026-05-16T11:39:54+02:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/products/rx/</loc>
-<lastmod>2026-05-16T10:59:38+02:00</lastmod>
+<lastmod>2026-05-16T11:39:54+02:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/products/prokey/</loc>
-<lastmod>2026-05-16T10:59:38+02:00</lastmod>
+<lastmod>2026-05-16T11:39:54+02:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/about.html</loc>
@@ -38,5 +38,9 @@
 </url>
 <url>
 <loc>http://localhost:4000/store/</loc>
+</url>
+<url>
+<loc>http://localhost:4000/EULA.html</loc>
+<lastmod>2026-05-16T11:39:54+02:00</lastmod>
 </url>
 </urlset>
