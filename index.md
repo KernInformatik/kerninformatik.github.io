@@ -1,5 +1,6 @@
 ---
 layout: page
-title: Startseite
-redirect_to: /about.html
+title: Über uns
 ---
+
+{% include_relative about.html %}
