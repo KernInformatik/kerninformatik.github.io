@@ -3,7 +3,7 @@ title:       "Webshop Simsek"
 author:      "Cihat Simsek"
 
 # ─── GitHub Pages URL ────────────────────────────
-url:     "https://kerninformatik.github.io"
+url:     "https://kerninformatik.github.io/about.html"
 baseurl: ""
 
 # ─── Kontakt / Schema ────────────────────────────
@@ -48,8 +48,7 @@ compress_html:
   clippings: all
   comments:  all
   endings:   all
-  blanklines: false
-
+  spaces:    all
 # ─── Exclude from build ──────────────────────────
 exclude:
   - Gemfile
